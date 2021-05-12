@@ -24,11 +24,20 @@
 
 
 ● Quante prenotazioni ha fatto l'ospite che ha fatto più prenotazioni? (quante, non chi!) 
+
+	//soluzione 1
 	SELECT MAX(tr.count_prenotazioni) AS 'max_prenotazioni' 
 	FROM (SELECT COUNT(prenotazioni_has_ospiti.prenotazione_id) 
-       		AS 'count_prenotazioni' FROM prenotazioni_has_ospiti 
+       		AS 'count_prenotazioni'
+	FROM prenotazioni_has_ospiti 
         	GROUP BY prenotazioni_has_ospiti.ospite_id ) as tr;
 
+	//soluzione 2
+	SELECT COUNT(prenotazioni_has_ospiti.ospite_id) as 'max_prenotazioni'
+	FROM prenotazioni_has_ospiti
+	GROUP BY prenotazioni_has_ospiti.ospite_id
+	ORDER BY COUNT(prenotazioni_has_ospiti.ospite_id) desc
+	LIMIT 1
 
 ● Come si chiamano gli ospiti che hanno fatto più di due prenotazioni 
 	SELECT ospiti.name, ospiti.lastname, ospite_id
