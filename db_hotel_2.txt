@@ -27,7 +27,7 @@
 	SELECT MAX(tr.count_prenotazioni) AS 'max_prenotazioni' 
 	FROM (SELECT COUNT(prenotazioni_has_ospiti.prenotazione_id) 
        		AS 'count_prenotazioni' FROM prenotazioni_has_ospiti 
-        	GROUP BY prenotazioni_has_ospiti.ospite_id ) TR;
+        	GROUP BY prenotazioni_has_ospiti.ospite_id ) as tr;
 
 
 ● Come si chiamano gli ospiti che hanno fatto più di due prenotazioni 
